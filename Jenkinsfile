@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        APP_NAME = 'ingeeduar/AJ-app'
+        APP_NAME = 'ingeeduar/ajpython'
     }
 
     stages {
