@@ -32,10 +32,8 @@ pipeline {
                 script {
                     def docker = dockerTool([credentialsId: '793b33f9-e155-403c-9126-79d84b81208b', toolName: 'docker'])
 
-                    // Construir la imagen
-                    docker.image(DOCKER_IMAGE).build()
+                    docker.build(DOCKER_IMAGE)
 
-                    // Autenticarse en el registro de Docker Hub y empujar la imagen
                     docker.withRegistry("${DOCKER_HUB_REGISTRY}", '793b33f9-e155-403c-9126-79d84b81208b') {
                         docker.image(DOCKER_IMAGE).push()
                     }
