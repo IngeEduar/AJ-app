@@ -27,7 +27,7 @@ pipeline {
                 script {
                     def docker = tool name: 'docker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
 
-                    docker.build(DOCKER_IMAGE, "-f Dockerfile .")
+                    docker.build(DOCKER_IMAGE)
 
                     docker.withRegistry("${DOCKER_HUB_REGISTRY}", '793b33f9-e155-403c-9126-79d84b81208b') {
                         docker.image(DOCKER_IMAGE).push()
