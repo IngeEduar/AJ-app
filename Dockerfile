@@ -2,8 +2,8 @@ FROM python:3.9
 
 WORKDIR /app
 
-COPY . /app
+RUN echo "Hola mundo" > index.html
 
-RUN pip install -r requirements.txt
+EXPOSE 8000
 
-CMD ["python", "app.py"]
+CMD ["python", "-m", "http.server", "8000"]
