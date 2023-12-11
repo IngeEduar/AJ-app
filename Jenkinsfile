@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    // tools {
-    //     docker 'docker'
-    // }
-    
     environment {
         APP_NAME = 'AJ-app'
         DOCKER_IMAGE = "IngeEduar/${APP_NAME}"
@@ -15,6 +11,18 @@ pipeline {
     }
 
     stages {
+        stage('Install Docker') {
+            steps {
+                script {
+                    // Descargar e instalar Docker
+                    def dockerInstallation = tool name: 'docker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
+                    if (dockerInstallation == null) {
+                        echo 'Docker no está instalado. Descargando e instalando...'
+                        dockerInstallation = tool name: 'docker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool', install: 'latest'
+                    }
+                }
+            }
+        }
 
         stage('Declarative: Checkout SCM') {
             steps {
@@ -35,14 +43,5 @@ pipeline {
                 }
             }
         }
-
-        // stage('Deploy with ArgoCD') {
-        //     steps {
-        //         script {
-        //             sh "argocd app create ${APP_NAME} --repo https://github.com/IngeEduar/AJ-app.git --path . --dest-server https://kubernetes.default.svc --dest-namespace ${KUBE_NAMESPACE}"
-        //             sh "argocd app sync ${APP_NAME}"
-        //         }
-        //     }
-        // }
     }
 }
