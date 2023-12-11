@@ -16,7 +16,7 @@ pipeline {
             steps {
                 script {
                     def image = "${APP_NAME}:1.0.1-${BUILD_NUMBER}"
-                    sh "docker build . ${image} -t  && docker push ${image}"
+                    sh "docker build . -t ${image}  && docker push ${image}"
                 }
             }
         }
