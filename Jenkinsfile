@@ -25,8 +25,6 @@ pipeline {
         stage('Build and Push Docker Image') {
             steps {
                 script {
-                    def docker = tool name: 'docker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
-
                     docker.build(DOCKER_IMAGE, "-f Dockerfile .")
 
                     docker.withRegistry("${DOCKER_HUB_REGISTRY}", '793b33f9-e155-403c-9126-79d84b81208b') {
