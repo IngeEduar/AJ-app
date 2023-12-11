@@ -2,7 +2,7 @@ FROM python:3.9
 
 WORKDIR /app
 
-RUN echo "Hola mundo" > index.html
+COPY ./index.html index.html
 
 EXPOSE 8000
 
