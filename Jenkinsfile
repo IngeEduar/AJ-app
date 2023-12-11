@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        APP_NAME = 'IngeEduar/AJ-app'
+        APP_NAME = 'ingeeduar/AJ-app'
     }
 
     stages {
