@@ -1,5 +1,9 @@
 pipeline {
     agent any
+
+    tools {
+        docker 'docker'
+    }
     
     environment {
         APP_NAME = 'AJ-app'
